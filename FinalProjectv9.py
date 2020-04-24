@@ -168,13 +168,12 @@ def TrialV():
     core.wait(2)
 
 #audio trial with accurate feedback
-def TrialAFeed1():
+def TrialAFeed1(duration):
     #declare global variables
     global window
     global kb
     global s
-    global duration
-    
+        
     #initialize variable s which is the auditory stimulis wav file
     s = sound.Sound(value='440.wav')
     
@@ -182,6 +181,8 @@ def TrialAFeed1():
     #start playing the tone
     s.play()
     #play the tone for a duration defined by "xa"
+    
+    #JJ
     core.wait(duration)
     #stop playing the tone after the interval has passed
     s.stop()
@@ -245,7 +246,7 @@ def TrialAFeed1():
     core.wait(2)
 
 #visual trial with accurate feedback
-def TrialVFeed1():
+def TrialVFeed1(duration):
     global window
     global kb
     global xv
@@ -333,10 +334,16 @@ def TerminateTask():
     core.quit()
 
 Instructions()
+
+for i in range(len(trials)):
+    if trials[i][1] < 0:
+        TrialAFeed1(trials[i][0])
+    #else:
+        #TrialAFeed1(trials[i][0])
 #TrialA()
 #TrialV()
-TrialAFeed1()
-TrialVFeed1()
+
+#TrialVFeed1()
 #TrialAFeed2()
 #TrialVFeed2()
 TerminateTask()
